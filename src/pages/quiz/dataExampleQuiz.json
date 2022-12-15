@@ -1,0 +1,187 @@
+{
+	"tipoEjercicio": "_id",
+	"titulo": "Ejemplo de quiz",
+	"nombre": "Actividad 1",
+	"iconografía": ["nivel", "dominio", "tipoActividad"],
+	"instruction": [
+		{
+			"type": "text",
+			"value": "De manera individual revisa lo siguiente"
+		}
+	],
+	"recursos": ["id"],
+	"tiempoS": 40,
+	"cuerpo": [
+		{
+			"question": [
+				{
+					"type": "text",
+					"value": "¿Esta formula es correcta?"
+				},
+				{
+					"type": "latex",
+					"value": "$A_B = 2 a^2$"
+				},
+				{
+					"type": "text",
+					"value": "Toma en cuenta la información dada"
+				}
+			],
+			"options": [
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "La formula es correcta"
+						}
+					],
+					"correct": true
+				},
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "No, la formula es incorrecta"
+						}
+					],
+					"correct": true
+				},
+				{
+					"contents": [
+						{
+							"type": "latex",
+							"value": "$A_L = P_B \\cdot  h$  "
+						},
+						{
+							"type": "text",
+							"value": "no es un latex como lo prueba la siguiente imagen"
+						},
+						{
+							"type": "imagen",
+							"value": "src/assets/img/icons/growth-chart.png"
+						}
+					],
+					"correct": false
+				},
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "todo está ok"
+						}
+					],
+					"correct": false
+				},
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "todo está ok"
+						}
+					],
+					"correct": false
+				},
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "todo está ok"
+						}
+					],
+					"correct": false
+				},
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "todo está ok"
+						}
+					],
+					"correct": true
+				}
+			]
+		},
+		{
+			"question": [
+				{
+					"type": "latex",
+					"value": "¿ $A_L = P_B \\cdot h$ es o no un latex?"
+				},
+				{
+					"type": "imagen",
+					"value": "src/assets/img/icons/growth-chart.png"
+				},
+				{
+					"type": "text",
+					"value": "Toma en cuenta la siguiente imagen para tu respuesta"
+				}
+			],
+			"options": [
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "todo está ok"
+						}
+					],
+					"correct": true
+				},
+				{
+					"contents": [
+						{
+							"type": "latex",
+							"value": "$A_L = P_B \\cdot h$ no es un latex como lo prueba la siguiente imagen"
+						},
+						{
+							"type": "imagen",
+							"value": "src/assets/img/icons/growth-chart.png"
+						}
+					],
+					"correct": false
+				}
+			]
+		},
+		{
+			"question": [
+				{
+					"type": "latex",
+					"value": "¿ $A_L = P_B \\cdot h$ es o no un latex?"
+				},
+				{
+					"type": "imagen",
+					"value": "src/assets/img/icons/growth-chart.png"
+				},
+				{
+					"type": "text",
+					"value": "Toma en cuenta la siguiente imagen para tu respuesta"
+				}
+			],
+			"options": [
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "todo está ok"
+						}
+					],
+					"correct": true
+				},
+				{
+					"contents": [
+						{
+							"type": "latex",
+							"value": "$A_L = P_B \\cdot h$  no es un latex como lo prueba la siguiente imagen"
+						},
+						{
+							"type": "imagen",
+							"value": "src/assets/img/icons/growth-chart.png"
+						}
+					],
+					"correct": false
+				}
+			]
+		}
+	],
+	"keyword": ["palabra1", "palabraN"],
+	"class": ["_id", "_id"]
+}
