@@ -10,21 +10,21 @@
 		}
 	],
 	"recursos": ["id"],
-	"tiempoS": 40,
+	"tiempoS": 60,
 	"cuerpo": [
 		{
 			"question": [
 				{
 					"type": "text",
-					"value": "¿Esta formula es correcta?"
+					"value": "¿Esta formula mostrada es un latex?"
 				},
 				{
 					"type": "latex",
-					"value": "$A_B = 2 a^2$"
+					"value": "$x = {-b pm sqrt {b^2 - 4ac}}{2a}$"
 				},
 				{
 					"type": "text",
-					"value": "Toma en cuenta la información dada"
+					"value": "Toma en cuenta la información dada y responde con cuidado"
 				}
 			],
 			"options": [
@@ -32,7 +32,7 @@
 					"contents": [
 						{
 							"type": "text",
-							"value": "La formula es correcta"
+							"value": "La formula es un latex (correcto)"
 						}
 					],
 					"correct": true
@@ -41,75 +41,39 @@
 					"contents": [
 						{
 							"type": "text",
-							"value": "No, la formula es incorrecta"
+							"value": "No, la formula no es un latex, es incorrecto"
 						}
 					],
-					"correct": true
+					"correct": false
 				},
 				{
 					"contents": [
 						{
 							"type": "latex",
-							"value": "$A_L = P_B \\cdot  h$  "
+							"value": "$x = {-b pm sqrt {b^2 - 4ac}}{2a}$"
 						},
 						{
 							"type": "text",
-							"value": "no es un latex como lo prueba la siguiente imagen"
+							"value": "No es un latex como lo prueba la siguiente imagen"
 						},
 						{
-							"type": "imagen",
-							"value": "src/assets/img/icons/growth-chart.png"
+							"type": "image",
+							"value": "https://anjanadata.com/wp-content/uploads/2020/11/prueba-de-concepto.jpg"
 						}
 					],
 					"correct": false
-				},
-				{
-					"contents": [
-						{
-							"type": "text",
-							"value": "todo está ok"
-						}
-					],
-					"correct": false
-				},
-				{
-					"contents": [
-						{
-							"type": "text",
-							"value": "todo está ok"
-						}
-					],
-					"correct": false
-				},
-				{
-					"contents": [
-						{
-							"type": "text",
-							"value": "todo está ok"
-						}
-					],
-					"correct": false
-				},
-				{
-					"contents": [
-						{
-							"type": "text",
-							"value": "todo está ok"
-						}
-					],
-					"correct": true
 				}
 			]
 		},
 		{
 			"question": [
 				{
-					"type": "latex",
-					"value": "¿ $A_L = P_B \\cdot h$ es o no un latex?"
+					"type": "text",
+					"value": "¿Esta imagen se puede visualizar?"
 				},
 				{
-					"type": "imagen",
-					"value": "src/assets/img/icons/growth-chart.png"
+					"type": "image",
+					"value": "https://www.capitalmexico.com.mx/wp-content/uploads/2018/05/3.jpg"
 				},
 				{
 					"type": "text",
@@ -121,7 +85,7 @@
 					"contents": [
 						{
 							"type": "text",
-							"value": "todo está ok"
+							"value": "La imagen se puede visualizar (correcto)"
 						}
 					],
 					"correct": true
@@ -129,12 +93,17 @@
 				{
 					"contents": [
 						{
-							"type": "latex",
-							"value": "$A_L = P_B \\cdot h$ no es un latex como lo prueba la siguiente imagen"
-						},
+							"type": "text",
+							"value": "No, la imagen no se puede visualizar, es incorrecto"
+						}
+					],
+					"correct": false
+				},
+				{
+					"contents": [
 						{
-							"type": "imagen",
-							"value": "src/assets/img/icons/growth-chart.png"
+							"type": "text",
+							"value": "No veo la imagen"
 						}
 					],
 					"correct": false
@@ -144,16 +113,16 @@
 		{
 			"question": [
 				{
-					"type": "latex",
-					"value": "¿ $A_L = P_B \\cdot h$ es o no un latex?"
-				},
-				{
-					"type": "imagen",
-					"value": "src/assets/img/icons/growth-chart.png"
+					"type": "text",
+					"value": "Es un texto de prueba, ¿es correcto?"
 				},
 				{
 					"type": "text",
-					"value": "Toma en cuenta la siguiente imagen para tu respuesta"
+					"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at condimentum libero. Sed congue elementum augue in aliquam. Pellentesque luctus magna vitae ultrices suscipit. Aliquam eget mauris et neque viverra venenatis. Nulla eget nibh sodales, accumsan massa nec, lacinia massa. Nam faucibus lectus sit amet porttitor viverra. Nullam vel volutpat nibh. Sed elementum ligula dolor, vel pharetra libero sollicitudin et. Morbi tempus mattis nisl vitae tempor."
+				},
+				{
+					"type": "text",
+					"value": "Este texto es de relleno, no tiene sentido, es solo para probar el funcionamiento de la aplicación"
 				}
 			],
 			"options": [
@@ -161,7 +130,7 @@
 					"contents": [
 						{
 							"type": "text",
-							"value": "todo está ok"
+							"value": "Es correcto, es un texto de prueba (correcto)"
 						}
 					],
 					"correct": true
@@ -169,15 +138,29 @@
 				{
 					"contents": [
 						{
-							"type": "latex",
-							"value": "$A_L = P_B \\cdot h$  no es un latex como lo prueba la siguiente imagen"
-						},
-						{
-							"type": "imagen",
-							"value": "src/assets/img/icons/growth-chart.png"
+							"type": "text",
+							"value": "No, es incorrecto, no es un texto de prueba"
 						}
 					],
 					"correct": false
+				},
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "Opción de relleno"
+						}
+					],
+					"correct": false
+				},
+				{
+					"contents": [
+						{
+							"type": "text",
+							"value": "Opción de relleno pero es correcta (correcta)"
+						}
+					],
+					"correct": true
 				}
 			]
 		}

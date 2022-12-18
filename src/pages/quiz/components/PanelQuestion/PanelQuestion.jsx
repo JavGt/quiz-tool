@@ -14,16 +14,38 @@ const PanelQuestion = ({
 	return (
 		<Container maxWidth='sm' sx={{ height: '100%' }}>
 			<Stack height='100%' spacing={2}>
-				<Box component='img' src='/Logotype_official_nombre.svg' py={5} width={100} />
+				<Box
+					component='img'
+					src='/Logotype_official_nombre.svg'
+					py={5}
+					width={100}
+					gap={2}
+				/>
 
-				<Box flex={1} overflow='auto'>
-					<Typography mb={5} variant='h5' color='text.secondary'>
-						Pregunta <strong>{indexQuestion + 1}</strong> de {totalQuestions}
+				<Stack direction='row' alignItems='center' justifyContent='space-between'>
+					<div>
+						<Typography variant='h5' fontWeight={700}>
+							Actividad 1
+						</Typography>
+
+						<Typography mb={5} variant='body1' color='text.secondary'>
+							Pregunta <strong>{indexQuestion + 1}</strong> de {totalQuestions}
+						</Typography>
+					</div>
+					<Typography variant='body1' color='text.secondary'>
+						iconografía
 					</Typography>
+				</Stack>
 
-					<Stack spacing={1}>
+				<Box flex={1}>
+					<Stack gap={2} width='100%' height='100%' alignItems='center'>
 						{question.map((detail, index) => (
-							<Fragment key={index}>{showTypeFactory(detail)}</Fragment>
+							<Fragment key={index}>
+								{showTypeFactory(detail, {
+									width: '100%',
+									variant: index === 0 ? 'h5' : 'body1',
+								})}
+							</Fragment>
 						))}
 					</Stack>
 				</Box>

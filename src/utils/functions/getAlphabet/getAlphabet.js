@@ -1,7 +1,8 @@
 export const getAlphabet = position => {
-	if (position === undefined || position < 0)
-		return Array.from({ length: 26 }, (_, i) => String.fromCharCode(i + 65));
+	const MAX_ALPHABET = 26;
 
-	const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-	return alphabet[position].toUpperCase();
+	if (position !== 0 && !position)
+		return Array.from({ length: MAX_ALPHABET }, (_, i) => String.fromCharCode(i + 65));
+
+	return String.fromCharCode(position + 65).toUpperCase();
 };

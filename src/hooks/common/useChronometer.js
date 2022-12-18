@@ -26,7 +26,7 @@ export const useChronometer = (time = 60, autoplay = false) => {
 
 	const [remainingTime, setRemainingTime] = useState(time * 1000);
 
-	// Actions
+	// Status
 	const [finished, setFinished] = useState(false);
 	const [running, setRunning] = useState(false);
 	const [paused, setPaused] = useState(false);
@@ -56,13 +56,13 @@ export const useChronometer = (time = 60, autoplay = false) => {
 
 	useEffect(() => {
 		autoplay && onPlay();
-
 		return () => onStop();
 	}, []);
 
 	useEffect(() => {
 		if (remainingTime <= 0) {
-			setFinished(true);
+			if (originalTime) setFinished(true);
+
 			onStop();
 		}
 	}, [remainingTime]);

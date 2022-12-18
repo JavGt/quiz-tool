@@ -3,7 +3,6 @@ import { Quiz } from '@/pages/quiz';
 import { createBrowserRouter, RouterProvider, useRouteError } from 'react-router-dom';
 
 const router = createBrowserRouter([
-	{},
 	{
 		path: 'create-quiz',
 		element: <CreateQuiz />,
@@ -19,7 +18,6 @@ const router = createBrowserRouter([
 	{
 		path: 'quiz/:id',
 		element: <Quiz />,
-
 		loader: () => {
 			const error = new Error('Error loading quiz');
 			error.code = 404;

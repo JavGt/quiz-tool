@@ -1,10 +1,5 @@
-import { Stack } from '@mui/material';
-import { Fragment, memo } from 'react';
-
-const ComponentMemo = memo(
-	({ children }) => children,
-	(prevProps, nextProps) => prevProps.item === nextProps.item
-);
+import StackMUI from '@mui/material/Stack';
+import { Fragment } from 'react';
 
 const FlatList = ({
 	data,
@@ -17,24 +12,23 @@ const FlatList = ({
 	if (!data.length) return ListEmptyComponent;
 
 	return (
-		<Stack {...props}>
+		<StackMUI {...props}>
 			{data.map((item, index) => (
 				<Fragment key={keyExtractor(item, index)}>
-					<Fragment children={renderItem(item, index)} />
+					{renderItem(item, index)}
 					{index < data.length - 1 && ItemSeparatorComponent}
 				</Fragment>
 			))}
-		</Stack>
+		</StackMUI>
 	);
 };
 
 FlatList.defaultProps = {
 	data: [],
 	renderItem: () => null,
-	keyExtractor: (item, index) => index,
+	keyExtractor: (_, index) => index,
 	ItemSeparatorComponent: null,
 	ListEmptyComponent: null,
-	gap: 0,
 };
 
 export default FlatList;

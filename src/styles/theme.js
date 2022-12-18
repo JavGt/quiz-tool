@@ -25,6 +25,7 @@ export const theme = createTheme({
 		},
 		warning: {
 			main: orange[700],
+			contrastText: '#fff',
 		},
 		info: {
 			main: blue[700],
@@ -33,7 +34,7 @@ export const theme = createTheme({
 			main: green[700],
 			contrastText: '#fff',
 		},
-		divider: '#eee',
+		divider: '#e4e4e4',
 		text: {
 			primary: '#000814',
 		},

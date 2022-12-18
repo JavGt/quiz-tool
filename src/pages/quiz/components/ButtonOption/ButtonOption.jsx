@@ -4,22 +4,22 @@ import { ButtonBase, Stack, Typography } from '@mui/material';
 import { alpha, styled } from '@mui/material/styles';
 import { Fragment } from 'react';
 
-const ButtonOption = ({ index, isSelected, option, onSelected }) => {
+const ButtonOption = ({ indexAlphabet, isSelected, onClick, contents }) => {
 	return (
 		<ButtonOptionStyled
-			onClick={() => onSelected(option, index)}
+			onClick={onClick}
 			variant='contained'
 			focusRipple
 			isSelected={isSelected}
 		>
 			<Stack gap={2} alignItems='center' flex={1}>
-				{option.contents.map((content, index) => (
-					<Fragment key={index}>{showTypeFactory(content)}</Fragment>
+				{contents.map((content, indexDetails) => (
+					<Fragment key={indexDetails}>{showTypeFactory(content)}</Fragment>
 				))}
 			</Stack>
 
 			<Typography variant='h2' color='inherit'>
-				{getAlphabet(index)}
+				{getAlphabet(indexAlphabet)}
 			</Typography>
 		</ButtonOptionStyled>
 	);
@@ -29,10 +29,8 @@ const ButtonOptionStyled = styled(ButtonBase)(({ theme, isSelected }) => ({
 	width: '100%',
 	display: 'flex',
 	gap: theme.spacing(2),
-
 	justifyContent: 'space-between',
 	border: '1px solid',
-
 	borderColor: theme.palette.grey[400],
 	padding: theme.spacing(2, 4),
 	borderRadius: theme.shape.borderRadius,
@@ -49,9 +47,8 @@ const ButtonOptionStyled = styled(ButtonBase)(({ theme, isSelected }) => ({
 		duration: theme.transitions.duration.shortest,
 	}),
 
-	'&:hover, &:focus': {
+	'&:hover': {
 		color: theme.palette.primary.main,
-		borderColor: theme.palette.primary.main,
 	},
 }));
 

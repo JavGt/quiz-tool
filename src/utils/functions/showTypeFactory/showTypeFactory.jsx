@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Alert, Box, Typography } from '@mui/material';
 import { MathJax } from 'better-react-mathjax';
 import { showImage } from '../showImage/showImage';
 
@@ -20,6 +20,10 @@ export const showTypeFactory = (
 				</MathJax>
 			);
 		default:
-			return null;
+			return (
+				<Typography textTransform={'uppercase'} color={'error.main'}>
+					tipo de contenido no soportado: <strong>{type}</strong>
+				</Typography>
+			);
 	}
 };

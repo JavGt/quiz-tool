@@ -1,45 +1,67 @@
-import { Box, Button, Container, Stack, Typography } from '@mui/material';
+import {
+	Alert,
+	AlertTitle,
+	Box,
+	Button,
+	Container,
+	Stack,
+	Typography,
+} from '@mui/material';
 import DoneIcon from '@mui/icons-material/Done';
 import { TimerQuiz } from '../TimerQuiz';
 import { FlatList } from '@/components/Wrappers/FlatList';
 import { ButtonOption } from '../ButtonOption';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const PanelOptions = ({ options, time, onNext, onFinish }) => {
 	const [optionsSelected, setOptionsSelected] = useState([]);
 
-	const [optionsModified, setOptionsModified] = useState(options);
+	const [optionsModified, setOptionsModified] = useState([]);
 
-	const [availableOption, setAvailableOption] = useState(
-		options.filter(option => option.correct).length
-	);
+	const [availableOption, setAvailableOption] = useState(0);
+
+	useEffect(() => {
+		if (!options.length) return cleanStates();
+
+		setStates();
+	}, [options]);
+
+	const cleanStates = () => {
+		setOptionsModified([]);
+		setOptionsSelected([]);
+		setAvailableOption(0);
+	};
+
+	const setStates = () => {
+		setOptionsModified(options);
+		setAvailableOption(options.reduce((acc, { correct }) => (correct ? ++acc : acc), 0));
+		setOptionsSelected([]);
+	};
 
 	const handleClickOption = (option, index) => {
 		if (option.selected) {
 			setOptionsModified(prev => {
-				const copyOptions = [...prev];
-				copyOptions[index].selected = false;
-				return copyOptions;
+				prev[index].selected = false;
+				return [...prev];
 			});
+
 			setOptionsSelected(prev => prev.filter(item => item !== option));
-			setAvailableOption(prev => prev + 1);
-		} else {
-			if (!availableOption) return;
-			setOptionsModified(prev => {
-				const copyOptions = [...prev];
-				copyOptions[index].selected = true;
-				return copyOptions;
-			});
-			setOptionsSelected(prev => [...prev, option]);
-			setAvailableOption(prev => (prev ? prev - 1 : prev));
+			setAvailableOption(prev => ++prev);
+			return;
 		}
+
+		if (!availableOption) return;
+
+		setOptionsModified(prev => {
+			prev[index].selected = true;
+			return [...prev];
+		});
+
+		setOptionsSelected(prev => [...prev, option]);
+		setAvailableOption(prev => --prev);
 	};
 
-	const handleNext = () => {
-		onNext(optionsSelected);
-		setOptionsSelected([]);
-		setAvailableOption(options.filter(option => option.correct).length);
-	};
+	const handleNext = () => onNext(optionsSelected);
 
 	return (
 		<>
@@ -74,16 +96,21 @@ const PanelOptions = ({ options, time, onNext, onFinish }) => {
 
 			<Container maxWidth='sm'>
 				<FlatList
-					pb={5}
-					keyExtractor={(_, index) => index.toString()}
-					gap={4}
 					data={optionsModified}
+					{...{ gap: 4, pb: 5 }}
+					keyExtractor={(_, index) => index.toString()}
+					ListEmptyComponent={
+						<Alert severity='error'>
+							<AlertTitle>¡Ups!</AlertTitle>
+							No hay <strong> opciones </strong> disponibles para esta pregunta
+						</Alert>
+					}
 					renderItem={(option, index) => (
 						<ButtonOption
+							indexAlphabet={index}
+							onClick={() => handleClickOption(option, index)}
 							isSelected={option.selected}
-							onSelected={handleClickOption}
-							option={option}
-							index={index}
+							contents={option.contents}
 						/>
 					)}
 				/>

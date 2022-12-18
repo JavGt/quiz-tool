@@ -1,5 +1,5 @@
 import { useChronometer } from '@/hooks/common/useChronometer';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Stack, Typography } from '@mui/material';
 import { memo, useEffect } from 'react';
 
 const TimerQuiz = ({ time, handleFinish }) => {
@@ -12,59 +12,30 @@ const TimerQuiz = ({ time, handleFinish }) => {
 		if (finished) handleFinish();
 	}, [finished]);
 
-	return (
-		<Box
-			sx={{
-				position: 'relative',
-				display: 'inline-flex',
-			}}
-		>
+	return time ? (
+		<Stack position='relative' alignItems='center' justifyContent='center'>
 			<CircularProgress
-				size={70}
-				sx={{
-					position: 'absolute',
-					top: 0,
-					left: 0,
-					width: '100%',
-					height: '100%',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					color: 'grey.500',
-				}}
+				size={80}
+				sx={{ position: 'absolute', color: 'grey.500' }}
 				variant='determinate'
-				value={100}
+				value='100'
 			/>
 
 			<CircularProgress
-				size={70}
+				variant='determinate'
+				size={80}
 				color={
 					remainingTime > originalTime / 2
 						? 'success'
-						: remainingTime > originalTime / 3
+						: remainingTime > originalTime / 4
 						? 'warning'
 						: 'error'
 				}
-				variant='determinate'
 				value={percentage}
 			/>
-			<Typography
-				sx={{
-					position: 'absolute',
-					top: 0,
-					left: 0,
-					width: '100%',
-					height: '100%',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}
-				fontWeight={700}
-			>
-				{fullTime}
-			</Typography>
-		</Box>
-	);
+			<Typography sx={{ position: 'absolute' }}>{fullTime}</Typography>
+		</Stack>
+	) : null;
 };
 
 export default memo(TimerQuiz);
