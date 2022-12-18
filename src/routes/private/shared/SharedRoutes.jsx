@@ -1,8 +1,13 @@
 import { CreateQuiz } from '@/pages/create-quiz';
+import { Home } from '@/pages/Home';
 import { Quiz } from '@/pages/quiz';
 import { createBrowserRouter, RouterProvider, useRouteError } from 'react-router-dom';
 
 const router = createBrowserRouter([
+	{
+		path: '/',
+		element: <Home />,
+	},
 	{
 		path: 'create-quiz',
 		element: <CreateQuiz />,

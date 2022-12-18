@@ -10,7 +10,7 @@
 		}
 	],
 	"recursos": ["id"],
-	"tiempoS": 60,
+	"tiempoS": 10,
 	"cuerpo": [
 		{
 			"question": [
