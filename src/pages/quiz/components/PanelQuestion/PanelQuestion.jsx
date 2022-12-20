@@ -1,5 +1,5 @@
 import { showTypeFactory } from '@/utils/functions/showTypeFactory/showTypeFactory';
-import { Box, Button, Container, Tooltip, Typography } from '@mui/material';
+import { Box, Button, Chip, Container, Tooltip, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import RedoIcon from '@mui/icons-material/Redo';
 import { Fragment } from 'react';
@@ -10,6 +10,8 @@ const PanelQuestion = ({
 	jumpAvailable,
 	handleJumpQuestion,
 	totalQuestions,
+	mode,
+	title,
 }) => {
 	return (
 		<Container maxWidth='sm' sx={{ height: '100%' }}>
@@ -25,7 +27,7 @@ const PanelQuestion = ({
 				<Stack direction='row' alignItems='center' justifyContent='space-between'>
 					<div>
 						<Typography variant='h5' fontWeight={700}>
-							Actividad 1
+							{title}
 						</Typography>
 
 						<Typography mb={5} variant='body1' color='text.secondary'>
@@ -50,6 +52,12 @@ const PanelQuestion = ({
 					</Stack>
 				</Box>
 
+				{mode === 'jump' && (
+					<div>
+						<Chip label='Pregunta saltada' color='warning' variant='filled' />
+					</div>
+				)}
+
 				<Stack py={5} direction='row' gap={2} alignItems='center' width='100%'>
 					<div>
 						<Typography variant='body1' fontWeight={700}>
@@ -63,7 +71,7 @@ const PanelQuestion = ({
 						</Typography>
 					</div>
 
-					<Tooltip title='Los saltos son aleatorios, hay riesgo de que te toque la misma pregunta.'>
+					<Tooltip title='Saltar a la siguiente pregunta'>
 						<Button
 							disabled={!jumpAvailable}
 							onClick={handleJumpQuestion}

@@ -12,6 +12,7 @@ import { TimerQuiz } from '../TimerQuiz';
 import { FlatList } from '@/components/Wrappers/FlatList';
 import { ButtonOption } from '../ButtonOption';
 import { useEffect, useState } from 'react';
+import produce from 'immer';
 
 const PanelOptions = ({ options, time, onNext, onFinish }) => {
 	const [optionsSelected, setOptionsSelected] = useState([]);
@@ -40,10 +41,11 @@ const PanelOptions = ({ options, time, onNext, onFinish }) => {
 
 	const handleClickOption = (option, index) => {
 		if (option.selected) {
-			setOptionsModified(prev => {
-				prev[index].selected = false;
-				return [...prev];
-			});
+			setOptionsModified(
+				produce(optionsModified, draft => {
+					draft[index].selected = false;
+				})
+			);
 
 			setOptionsSelected(prev => prev.filter(item => item !== option));
 			setAvailableOption(prev => ++prev);
@@ -52,10 +54,11 @@ const PanelOptions = ({ options, time, onNext, onFinish }) => {
 
 		if (!availableOption) return;
 
-		setOptionsModified(prev => {
-			prev[index].selected = true;
-			return [...prev];
-		});
+		setOptionsModified(
+			produce(optionsModified, draft => {
+				draft[index].selected = true;
+			})
+		);
 
 		setOptionsSelected(prev => [...prev, option]);
 		setAvailableOption(prev => --prev);

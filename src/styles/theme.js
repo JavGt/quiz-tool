@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import { blue, green, red, orange } from '@mui/material/colors';
 import { Zoom } from '@mui/material';
 
 export const theme = createTheme({
@@ -10,36 +9,42 @@ export const theme = createTheme({
 		},
 		primary: {
 			main: '#06038D',
+			dark: '#040273',
+			contrastText: '#fff',
 		},
 		secondary: {
 			main: '#071D49',
+			dark: '#051433',
+			contrastText: '#fff',
 		},
 		tertiary: {
 			main: '#FF6900',
+			dark: '#E66000',
+			contrastText: '#000',
 		},
 		alternate: {
 			main: '#FFC300',
+			dark: '#E6B000',
+			contrastText: '#000',
 		},
 		error: {
-			main: red[700],
+			main: '#C1272D',
+			dark: '#A82226',
+			contrastText: '#fff',
 		},
 		warning: {
-			main: orange[700],
-			contrastText: '#fff',
-		},
-		info: {
-			main: blue[700],
+			main: '#FFD217',
+			dark: '#E6BC15',
+			contrastText: '#000',
 		},
 		success: {
-			main: green[700],
+			main: '#309C3F',
+			dark: '#309C3F',
 			contrastText: '#fff',
 		},
-		divider: '#e4e4e4',
-		text: {
-			primary: '#000814',
-		},
+		divider: '#BEBDC6',
 		background: {
-			default: '#f0f2f5',
+			default: '#F5F4FA',
 			paper: '#ffffff',
 		},
 	},

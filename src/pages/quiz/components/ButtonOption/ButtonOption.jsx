@@ -4,15 +4,16 @@ import { ButtonBase, Stack, Typography } from '@mui/material';
 import { alpha, styled } from '@mui/material/styles';
 import { Fragment } from 'react';
 
-const ButtonOption = ({ indexAlphabet, isSelected, onClick, contents }) => {
+const ButtonOption = ({ indexAlphabet, isSelected, onClick, contents, disabled }) => {
 	return (
 		<ButtonOptionStyled
+			disabled={disabled}
 			onClick={onClick}
 			variant='contained'
 			focusRipple
 			isSelected={isSelected}
 		>
-			<Stack gap={2} alignItems='center' flex={1}>
+			<Stack gap={2} alignItems='flex-start' flex={1}>
 				{contents.map((content, indexDetails) => (
 					<Fragment key={indexDetails}>{showTypeFactory(content)}</Fragment>
 				))}
@@ -40,7 +41,6 @@ const ButtonOptionStyled = styled(ButtonBase)(({ theme, isSelected }) => ({
 		color: theme.palette.primary.main,
 		borderColor: theme.palette.primary.main,
 		backgroundColor: alpha(theme.palette.primary.main, 0.1),
-		boxShadow: theme.shadows[1],
 	}),
 
 	transition: theme.transitions.create(['color', 'border-color', 'box-shadow'], {
@@ -51,5 +51,10 @@ const ButtonOptionStyled = styled(ButtonBase)(({ theme, isSelected }) => ({
 		color: theme.palette.primary.main,
 	},
 }));
+
+ButtonOption.defaultProps = {
+	isSelected: false,
+	disabled: false,
+};
 
 export default ButtonOption;
