@@ -1,5 +1,8 @@
-import { Grid } from '@mui/material';
-import { useLayoutEffect, useReducer } from 'react';
+import { QuizInit } from '@/components/Features/Quiz/QuizInit';
+import { Header } from '@/components/UI/Header';
+import { useQuiz } from '@/hooks/common/useQuiz';
+import { Grid, styled } from '@mui/material';
+import { useReducer } from 'react';
 import { PanelOptions } from './components/PanelOptions';
 import { PanelQuestion } from './components/PanelQuestion';
 import { QuizFinished } from './components/QuizFinished';
@@ -7,10 +10,25 @@ import QuizData from './dataExampleQuiz.json';
 
 //  TODO: crear herramienta para crear quiz para cuando este en construccion
 
+/*
+ Mode of the quiz:
+ - 'init' -> quiz not started
+ - 'progress' -> quiz in progress
+ - 'jump' -> quiz in progress but in jump mode
+ - 'finish' -> quiz finished
+*/
+
+const modeQuiz = {
+	init: 'init',
+	progress: 'progress',
+	jump: 'jump',
+	finish: 'finish',
+};
+
 const quizEmpty = {
-	mode: 'linear,', // linear, ,jump, finish
+	mode: modeQuiz.init,
 	questionIndex: 0,
-	jumpAvailable: 10,
+	jumpAvailable: 3,
 	questionsJumped: [],
 	questionAnswered: [],
 };
@@ -22,6 +40,7 @@ const actionsTypes = {
 	QUESTION_JUMPED_ANSWERED: 'QUESTION_JUMPED_ANSWERED',
 	QUESTIONS_ANSWERED: 'QUESTIONS_ANSWERED',
 	FINISH_QUIZ: 'FINISH_QUIZ',
+	START_QUIZ: 'START_QUIZ',
 };
 
 const reducerQuiz = (state, action) => {
@@ -50,6 +69,7 @@ const reducerQuiz = (state, action) => {
 				mode: 'jump',
 				questionIndex: state.questionsJumped[0],
 			};
+
 		case actionsTypes.QUESTION_JUMPED_ANSWERED:
 			const copyQuestionAnswered = [...state.questionAnswered];
 
@@ -72,6 +92,11 @@ const reducerQuiz = (state, action) => {
 			};
 		case actionsTypes.FINISH_QUIZ:
 			return { ...state, mode: 'finish' };
+		case actionsTypes.START_QUIZ:
+			return {
+				...state,
+				mode: modeQuiz.progress,
+			};
 		default:
 			return state;
 	}
@@ -107,13 +132,11 @@ const Quiz = ({ data }) => {
 		dispatchQuiz({ type: actionsTypes.QUESTION_JUMPED_ANSWERED, payload: options });
 	};
 
-	useLayoutEffect(() => {
-		if (questionAnswered.length === cuerpo.length) handleFinishQuiz();
-	}, [questionAnswered]);
+	const { handleFinish, handleStart, handleNext, settings, handleJumped } = useQuiz(data);
 
 	const handleFinishQuiz = () => dispatchQuiz({ type: actionsTypes.FINISH_QUIZ });
 
-	if (mode === 'finish')
+	if (settings.mode === modeQuiz.finish)
 		return (
 			<QuizFinished
 				title={titulo}
@@ -124,37 +147,53 @@ const Quiz = ({ data }) => {
 		);
 
 	return (
-		<Grid
-			container
-			columns={12}
-			height={{ xs: '100%', md: '100vh' }}
-			overflow='hidden'
-			maxHeight='1080px'
-		>
-			<Grid item xs={12} md={6} overflow='auto' maxHeight='100%'>
-				<PanelQuestion
-					mode={mode}
-					totalQuestions={cuerpo.length}
-					question={cuerpo[questionIndex]?.question}
-					indexQuestion={questionIndex}
-					jumpAvailable={jumpAvailable}
-					handleJumpQuestion={handleJumpQuestion}
-					title={titulo}
-					iconography={iconografía}
-				/>
-			</Grid>
+		<>
+			<QuizInit
+				open={settings.mode === modeQuiz.init}
+				data={data}
+				handleInit={handleStart}
+			/>
 
-			<Grid item xs={12} md={6} overflow='auto' maxHeight='100%'>
-				<PanelOptions
-					onFinish={handleFinishQuiz}
-					onNext={handleNextQuestion}
-					options={cuerpo[questionIndex]?.options}
-					time={tiempoS}
-				/>
-			</Grid>
-		</Grid>
+			<Header title={<strong>Quiz</strong>} />
+
+			<GridContainer container columns={12}>
+				<Grid item xs={12} md={6} height={{ sx: '100%' }} overflow='auto'>
+					<PanelQuestion
+						mode={settings.mode}
+						totalQuestions={cuerpo.length}
+						question={cuerpo[settings.questionIndex]?.question}
+						indexQuestion={settings.questionIndex}
+						jumpAvailable={settings.jumpAvailable}
+						handleJumpQuestion={handleJumped}
+						title={titulo}
+						iconography={iconografía}
+					/>
+				</Grid>
+
+				<Grid item xs={12} md={6} height={{ sx: '100%' }} overflow='auto'>
+					<PanelOptions
+						onFinish={handleFinishQuiz}
+						onNext={handleNext}
+						options={cuerpo[settings.questionIndex]?.options}
+						time={tiempoS}
+					/>
+				</Grid>
+			</GridContainer>
+		</>
 	);
 };
+
+const GridContainer = styled(Grid)(({ theme }) => {
+	const tablet = theme.breakpoints.up('sm');
+
+	return {
+		height: `calc(100vh - ${theme.mixins.toolbar.minHeight}px)`,
+
+		[tablet]: {
+			height: `calc(100vh - ${theme.mixins.toolbar[tablet].minHeight}px)`,
+		},
+	};
+});
 
 Quiz.defaultProps = {
 	data: QuizData,

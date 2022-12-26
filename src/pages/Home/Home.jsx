@@ -2,7 +2,6 @@ import { Header } from '@/components/UI/Header';
 import {
 	Avatar,
 	AvatarGroup,
-	Badge,
 	Button,
 	Card,
 	CardActions,
@@ -13,7 +12,6 @@ import {
 	Grid,
 	IconButton,
 	Stack,
-	TextField,
 	Typography,
 } from '@mui/material';
 import ExtensionIcon from '@mui/icons-material/Extension';
@@ -23,7 +21,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MoveUpIcon from '@mui/icons-material/MoveUp';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 const Home = () => {
 	return (
@@ -31,7 +29,7 @@ const Home = () => {
 			<Header
 				title={
 					<>
-						¡<strong>Quiz</strong> tools!
+						¡<strong>Quiz</strong> Home!
 					</>
 				}
 			/>
@@ -46,7 +44,7 @@ const Home = () => {
 					gap={5}
 				>
 					<div>
-						<Typography variant='h2'>
+						<Typography variant='h3'>
 							¡<strong>Quiz</strong> tools!
 						</Typography>
 
@@ -75,24 +73,10 @@ const Home = () => {
 						</Button>
 					</Stack>
 				</Stack>
-				<Stack my={5} direction='row' gap={5} width='100%'>
-					<Badge badgeContent={4} color='primary'>
-						<Button size='small' variant='outlined' endIcon={<FilterAltIcon />}>
-							Filtros
-						</Button>
-					</Badge>
-
-					<Stack flex={1} direction='row' gap={1}>
-						<TextField size='small' fullWidth placeholder='Buscar quiz' />
-						<Button color='info' variant='contained'>
-							Buscar
-						</Button>
-					</Stack>
-				</Stack>
 
 				<Grid container columns={12} spacing={2}>
-					{Array.from({ length: 18 }).map((_, index) => (
-						<Grid item md={3}>
+					{Array.from({ length: 10 }).map((_, index) => (
+						<Grid item md={3} key={index}>
 							<Card>
 								<CardContent>
 									<Typography fontSize={14} color='text.secondary' gutterBottom>

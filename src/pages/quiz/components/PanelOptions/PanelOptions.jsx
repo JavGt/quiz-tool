@@ -6,6 +6,7 @@ import {
 	Container,
 	Stack,
 	Typography,
+	Zoom,
 } from '@mui/material';
 import DoneIcon from '@mui/icons-material/Done';
 import { TimerQuiz } from '../TimerQuiz';
@@ -47,7 +48,11 @@ const PanelOptions = ({ options, time, onNext, onFinish }) => {
 				})
 			);
 
-			setOptionsSelected(prev => prev.filter(item => item !== option));
+			setOptionsSelected(
+				produce(optionsSelected, draft => {
+					draft.splice(draft.indexOf(option), 1);
+				})
+			);
 			setAvailableOption(prev => ++prev);
 			return;
 		}
@@ -72,7 +77,6 @@ const PanelOptions = ({ options, time, onNext, onFinish }) => {
 				<Container maxWidth='sm'>
 					<Stack
 						direction='row'
-						spacing={2}
 						justifyContent='space-between'
 						alignItems='center'
 						py={5}
@@ -84,15 +88,17 @@ const PanelOptions = ({ options, time, onNext, onFinish }) => {
 
 						<TimerQuiz handleFinish={onFinish} time={time} />
 
-						<Button
-							disabled={!optionsSelected.length}
-							onClick={handleNext}
-							endIcon={<DoneIcon />}
-							variant='contained'
-							color='success'
-						>
-							Siguiente
-						</Button>
+						<Zoom in={!!optionsSelected.length}>
+							<Button
+								disabled={!optionsSelected.length}
+								onClick={handleNext}
+								endIcon={<DoneIcon />}
+								variant='contained'
+								color='success'
+							>
+								Siguiente
+							</Button>
+						</Zoom>
 					</Stack>
 				</Container>
 			</Box>

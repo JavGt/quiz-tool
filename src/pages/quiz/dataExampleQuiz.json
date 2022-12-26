@@ -1,7 +1,7 @@
 {
 	"tipoEjercicio": "_id",
-	"titulo": "Ejemplo de quiz",
-	"nombre": "Actividad 1",
+	"titulo": "Actividad 1",
+	"nombre": "Ejemplo de quiz",
 	"iconografía": ["nivel", "dominio", "tipoActividad"],
 	"instruction": [
 		{
@@ -10,7 +10,7 @@
 		}
 	],
 	"recursos": ["id"],
-	"tiempoS": 10,
+	"tiempoS": 0,
 	"cuerpo": [
 		{
 			"question": [
