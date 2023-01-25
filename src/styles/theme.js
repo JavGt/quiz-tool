@@ -1,5 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import { Zoom } from '@mui/material';
+import BergenSansSemiBold from '@/assets/font/oficial/BergenSans-SemiBold.otf';
+import BergenSansRegular from '@/assets/font/oficial/BergenSans-Regular.otf';
 
 export const theme = createTheme({
 	palette: {
@@ -46,16 +48,35 @@ export const theme = createTheme({
 		background: {
 			default: '#F5F4FA',
 			paper: '#ffffff',
+			fondo: '#eaecf9',
 		},
 	},
 	typography: {
-		fontFamily: 'Albert Sans',
+		fontFamily: ['Albert sans', 'Bergen Sans', 'sans-serif'].join(','),
 	},
 	shape: {
 		borderRadius: 5,
 	},
 	spacing: 5,
 	components: {
+		MuiCssBaseline: {
+			styleOverrides: `
+				@font-face {
+					font-family: 'Bergen Sans';
+					src: url(${BergenSansSemiBold}) format('opentype');
+					font-weight: 600;
+				}
+				@font-face {
+					font-family: 'Bergen Sans';
+					src: url(${BergenSansRegular}) format('opentype');
+					font-weight: 400;
+				}
+				body::-webkit-scrollbar {
+					display: none;
+				}
+				
+				`,
+		},
 		MuiButton: {
 			styleOverrides: {
 				root: ({ theme }) => ({

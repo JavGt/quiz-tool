@@ -1,6 +1,7 @@
 import { CreateQuiz } from '@/pages/create-quiz';
 import { Home } from '@/pages/Home';
 import { Quiz } from '@/pages/quiz';
+import { TestQuiz } from '@/pages/TestQuiz';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -21,11 +22,8 @@ const router = createBrowserRouter([
 		element: <Quiz />,
 	},
 	{
-		path: 'quiz/:id',
-		element: <Quiz />,
-	},
-	{
 		path: '/demo/quiz',
+		element: <TestQuiz />,
 	},
 ]);
 

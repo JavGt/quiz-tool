@@ -1,5 +1,5 @@
-import { QuizInit } from '@/components/Features/Quiz/QuizInit';
-import { Header } from '@/components/UI/Header';
+import { QuizStart } from '@/components/Features/Quiz/QuizStart';
+import { HeaderLayout } from '@/components/UI/HeaderLayout';
 import { useQuiz } from '@/hooks/common/useQuiz';
 import { Grid, styled } from '@mui/material';
 import { useReducer } from 'react';
@@ -148,13 +148,9 @@ const Quiz = ({ data }) => {
 
 	return (
 		<>
-			<QuizInit
-				open={settings.mode === modeQuiz.init}
-				data={data}
-				handleInit={handleStart}
-			/>
+			<QuizStart open={false} data={data} handleStart={handleStart} />
 
-			<Header title={<strong>Quiz</strong>} />
+			<HeaderLayout />
 
 			<GridContainer container columns={12}>
 				<Grid item xs={12} md={6} height={{ sx: '100%' }} overflow='auto'>

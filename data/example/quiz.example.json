@@ -1,19 +1,20 @@
 {
+	"_id": "5f9f1b9b0b1b0c0017a5b1b1",
 	"tipoEjercicio": "_id",
 	"titulo": "Actividad 1",
 	"nombre": "Ejemplo de quiz",
-	"iconografía": ["nivel", "dominio", "tipoActividad"],
 	"instruction": [
 		{
 			"type": "text",
 			"value": "De manera individual revisa lo siguiente"
 		}
 	],
+	"status": true,
 	"recursos": ["id"],
 	"tiempoS": 3600,
 	"cuerpo": [
 		{
-			"question": [
+			"pregunta": [
 				{
 					"type": "text",
 					"value": "¿Esta formula mostrada es un latex?"
@@ -27,27 +28,27 @@
 					"value": "Toma en cuenta la información dada y responde con cuidado"
 				}
 			],
-			"options": [
+			"respuestas": [
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "La formula es un latex (correcto)"
 						}
 					],
-					"correct": true
+					"correcta": true
 				},
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "No, la formula no es un latex, es incorrecto"
 						}
 					],
-					"correct": false
+					"correcta": false
 				},
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "latex",
 							"value": "$x = {-b pm sqrt {b^2 - 4ac}}{2a}$"
@@ -61,12 +62,12 @@
 							"value": "https://anjanadata.com/wp-content/uploads/2020/11/prueba-de-concepto.jpg"
 						}
 					],
-					"correct": false
+					"correcta": false
 				}
 			]
 		},
 		{
-			"question": [
+			"pregunta": [
 				{
 					"type": "text",
 					"value": "¿Esta imagen se puede visualizar?"
@@ -80,38 +81,38 @@
 					"value": "Toma en cuenta la siguiente imagen para tu respuesta"
 				}
 			],
-			"options": [
+			"respuestas": [
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "La imagen se puede visualizar (correcto)"
 						}
 					],
-					"correct": true
+					"correcta": true
 				},
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "No, la imagen no se puede visualizar, es incorrecto"
 						}
 					],
-					"correct": false
+					"correcta": false
 				},
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "No veo la imagen"
 						}
 					],
-					"correct": false
+					"correcta": false
 				}
 			]
 		},
 		{
-			"question": [
+			"pregunta": [
 				{
 					"type": "text",
 					"value": "Es un texto de prueba, ¿es correcto?"
@@ -125,46 +126,44 @@
 					"value": "Este texto es de relleno, no tiene sentido, es solo para probar el funcionamiento de la aplicación"
 				}
 			],
-			"options": [
+			"respuestas": [
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "Es correcto, es un texto de prueba (correcto)"
 						}
 					],
-					"correct": true
+					"correcta": true
 				},
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "No, es incorrecto, no es un texto de prueba"
 						}
 					],
-					"correct": false
+					"correcta": false
 				},
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "Opción de relleno"
 						}
 					],
-					"correct": false
+					"correcta": false
 				},
 				{
-					"contents": [
+					"respuesta": [
 						{
 							"type": "text",
 							"value": "Opción de relleno pero es correcta (correcta)"
 						}
 					],
-					"correct": true
+					"correcta": true
 				}
 			]
 		}
-	],
-	"keyword": ["palabra1", "palabraN"],
-	"class": ["_id", "_id"]
+	]
 }

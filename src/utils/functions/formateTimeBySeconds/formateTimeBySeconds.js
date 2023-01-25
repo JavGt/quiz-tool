@@ -1,5 +1,6 @@
 import { formateClock } from '../formateClock/formateClock';
 
+//TODO: pasarlo a un hook
 export const formateTimeBySeconds = seconds => {
 	const hours = Math.floor(seconds / 3600);
 	const minutes = Math.floor((seconds % 3600) / 60);

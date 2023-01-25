@@ -1,6 +1,5 @@
 import { useReducer } from 'react';
 import produce from 'immer';
-import { Dialog } from '@mui/material';
 
 //  TODO: crear herramienta para crear quiz para cuando este en construcción
 
@@ -129,7 +128,6 @@ const reducerQuiz = produce((draft, action) => {
 });
 
 export const useQuiz = data => {
-	console.log('🚀 ~ file: useQuiz.js:132 ~ useQuiz ~ data', data);
 	const {} = data;
 
 	const countQuestions = 10;

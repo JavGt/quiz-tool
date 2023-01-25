@@ -26,7 +26,9 @@ const ButtonOption = ({ indexAlphabet, isSelected, onClick, contents, disabled }
 	);
 };
 
-const ButtonOptionStyled = styled(ButtonBase)(({ theme, isSelected }) => ({
+const ButtonOptionStyled = styled(ButtonBase, {
+	shouldForwardProp: prop => prop !== 'isSelected',
+})(({ theme, isSelected }) => ({
 	width: '100%',
 	display: 'flex',
 	gap: theme.spacing(2),

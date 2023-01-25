@@ -1,0 +1,1 @@
+export { default as TextCopyright } from './TextCopyright';
